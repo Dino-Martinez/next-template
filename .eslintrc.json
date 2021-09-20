@@ -5,7 +5,8 @@
         "node": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "plugin:@next/next/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 12,
