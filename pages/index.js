@@ -2,10 +2,14 @@
 import Head from 'next/head'
 import { useSession } from 'next-auth/client'
 import SignInForm from '../components/signinForm'
+import { useEffect } from 'react'
+import useApi from '../hooks/useApi'
 
 export default function Home () {
   const [session, loading] = useSession()
+  const [data, refetch] = useApi('/api/test')
 
+  useEffect(() => { if (session) refetch() }, [session])
   return (
     <div>
       <Head>
@@ -18,7 +22,7 @@ export default function Home () {
       }
 
       {!loading && session &&
-        <h1>Welcome!</h1>
+        data.result
       }
 
       {!loading &&
