@@ -15,7 +15,10 @@ export default function Home ({ session, authenticating }) {
       </Head>
 
       {authenticating &&
-        <h1>authenticating session...</h1>
+        <div className="loading">
+          <h1>Authenticating session...</h1>
+          <div className="lds-dual-ring"></div>
+        </div>
       }
 
       {apiLoading &&
