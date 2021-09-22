@@ -7,7 +7,7 @@ import useApi from '../hooks/useApi'
 
 export default function Home () {
   const [session, loading] = useSession()
-  const [data, refetch] = useApi('/api/test')
+  const [data, refetch, apiLoading] = useApi('/api/test')
 
   useEffect(() => { if (session) refetch() }, [session])
   return (
@@ -18,10 +18,14 @@ export default function Home () {
       </Head>
 
       {loading &&
-        <h1>Loading...</h1>
+        <h1>Loading session...</h1>
       }
 
-      {!loading && session &&
+      {apiLoading &&
+        <h1>Loading result...</h1>
+      }
+
+      {!loading && !apiLoading && session &&
         data.result
       }
 
